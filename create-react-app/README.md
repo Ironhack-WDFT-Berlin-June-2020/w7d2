@@ -1,68 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Create React App
+```bash
+$ npx create-react-app <NAME>
+```
 
-## Available Scripts
+#### Run the App and visit http://localhost:3000
+```bash
+$ npm start
+```
 
-In the project directory, you can run:
 
-### `npm start`
+#### Create a components folder in the /src directory where you put your components
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Let's restructure it and add a Header component that we reference in the App.js
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Remove the content from the App.js render() and put it into a Header component
+#### Also change the heading text - we also have to change the path to the logo
 
-### `npm test`
+```js
+//src/components/Header.js
+import React, { Component } from 'react'
+import logo from '../logo.svg';
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+export default class Header extends Component {
+    render() {
+        return (
+            <div>
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <h1>Welcome Ironhacker</h1>
+                    <h3>You are ready to take this to the next level!</h3>
+                </header>
+            </div>
+        )
+    }
+}
+```
 
-### `npm run build`
+#### And inside App.js
+```js
+// src/App.js
+import React from 'react';
+import './App.css';
+import Header from './components/Header.js';
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+function App() {
+  return (
+    <div className="App">
+      <Header />
+    </div>
+  );
+}
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+export default App;
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Adding Images, Fonts and Files
+With Webpack, using static assets like images and fonts works similarly to CSS.
+You can import a file right in a JavaScript module. 
+Like we did with the logo.svg in the Header component. The import statement returns a path or, for files less than 10k bytes, excluding svgs, a data URI.
 
-### `npm run eject`
+```js
+//src/components/Header.js
+import logo from '../logo.svg';
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+//
+<img src={logo} className="App-logo" alt="logo" />
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### The logo svg could also be imported like that and turned directly into a React component
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```js
+//src/components/Header.js
+import { ReactComponent as Logo } from '../logo.svg';
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<Logo className="App-logo" />
+``` 
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#### https://create-react-app.dev/docs/adding-a-stylesheet
