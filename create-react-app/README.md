@@ -5,6 +5,7 @@ $ npx create-react-app <NAME>
 
 #### Run the App and visit http://localhost:3000
 ```bash
+$ cd <NAME>
 $ npm start
 ```
 
